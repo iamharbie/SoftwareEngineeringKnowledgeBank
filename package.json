@@ -1,0 +1,14 @@
+{
+    "name": "softwareEngineeringKnowledgeBank",
+    "displayName": "softwareEngineeringKnowledgeBank",
+    "description": "This `package.json` is being solely added to access quick scripts in the task explorer",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.37.0"
+    },
+    "scripts": {
+        "code": "code .",
+        "gitExtensions": "GitExtensions browse .",
+        "pycharm64": "pycharm64 ./"
+    }
+}
