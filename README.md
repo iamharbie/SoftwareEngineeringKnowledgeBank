@@ -20,6 +20,7 @@ SE knowledge bank and interview preparation tracker. And
 1. Sorting
    1. study
       1. quickSort
+         1. ![quickSort](/resources/images/quickSort.png "quickSort")
       2. mergeSort
       3. heapSort
    2. practice
