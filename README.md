@@ -14,6 +14,10 @@ SE knowledge bank and interview preparation tracker. And
     - [practice](#practice)
   - [Log](#log)
     - [Day 1](#day-1)
+    - [Day 2](#day-2)
+    - [Day 3](#day-3)
+      - [HW](#hw)
+    - [Later](#later)
 
 ## Plan (update as we go)
 
@@ -65,3 +69,17 @@ SE knowledge bank and interview preparation tracker. And
    1. [Plan (update as we go)](#plan-update-as-we-go)
    2. [Processes](#processes)
 4. quickSort
+
+### Day 2
+
+### Day 3
+
+#### HW
+
+- space complexity of mSort()
+- mSort LinkedList implement
+- hSort review
+
+### Later
+
+- qSort iterative method and mSort maybe?
