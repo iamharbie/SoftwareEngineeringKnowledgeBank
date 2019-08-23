@@ -5,17 +5,11 @@ def swap(arr, i, j):
     arr[i], arr[j] = arr[j], arr[i]
 
 
-def choosePivot(arr, lo, hi):
-    p = randrange(lo, hi)
-    swap(arr, hi, p)
-    return
-
-
 def partition(arr, lo, hi):
     i = lo - 1
 
     for j in range(lo, hi):
-        if arr[j] <= arr[hi]:
+        if arr[j] <= arr[hi]:  # TODO: Check if this makes the algorithm stable
             i += 1
             swap(arr, i, j)
 
@@ -23,37 +17,18 @@ def partition(arr, lo, hi):
     return i+1
 
 
-def qSort(arr, lo, hi):
-    # if lo == hi+1:
-    #     return
-    # if lo > hi+1:
-    #     raise "impossible value for lo/hi"
+def choosePivot(arr, lo, hi):
+    p = randrange(lo, hi)
+    swap(arr, p, hi)
+    return
 
+
+def qSort(arr, lo, hi):
     if lo < hi:
         choosePivot(arr, lo, hi)
         p = partition(arr, lo, hi)
-        qSort(arr, lo, p - 1)
-        qSort(arr, p + 1, hi)
-
-
-"""
-# arr = [10, 3, 1]
-arr = [10, 3, 1, 7, 15, 8, 5]
-#                          hi
-#     [3, 10, 1, 7, 15, 8, 5]
-#     [3, 1, 10, 7, 15, 8, 5]
-#             i            j
-#     [3, 1, 5, 7, 15, 8, 10]
-#     [3, 1,                ] => [1, 3]  lo = 0 hi = -1
-#     [      5              ]
-#     [         7, 15, 8, 10]
-
-#     [  [ <=p ] [ >p ] [ ? ]   ]
-
-print(arr)
-qSort(arr, 0, len(arr)-1)
-print(arr)
- """
+        qSort(arr, lo, p-1)
+        qSort(arr, p+1, hi)
 
 
 if __name__ == "__main__":
@@ -70,3 +45,6 @@ if __name__ == "__main__":
     print(arr2D)
     assert arr2D == [[], [1], [2, 2], [
         1, 2, 5, 7, 8, 10], [1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 3, 10], [1, 3, 5, 7, 8, 10, 15]]
+
+
+#  1 5 4 3 2
