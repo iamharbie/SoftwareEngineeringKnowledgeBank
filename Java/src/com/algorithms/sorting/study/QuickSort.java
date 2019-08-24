@@ -7,6 +7,10 @@ public class QuickSort {
     private static void quicksort(int[] A, int left, int right){
         if(left >= right) return;
 
+        //Randomizing index
+        int randomPivot = left + (int) (Math.random() * (right - left));
+        swap(A,randomPivot,left); //Swap with first index since partition uses that
+
         int partitionIndex = partition(A, left, right);
 
         quicksort(A,left, partitionIndex - 1);
