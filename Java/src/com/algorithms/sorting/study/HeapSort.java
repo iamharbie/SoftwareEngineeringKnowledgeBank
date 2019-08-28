@@ -43,11 +43,14 @@ public class HeapSort {
 
     private static void sort(int[] A){
         int n = A.length;
+        //Sift down the remaining half of the tree since half of the tree is a t
+        // the bottom and they satisfy the max heap property
         for (int index = n / 2; index >= 0 ; index--) {
             siftDown(A,index,n);
         }
 
         int size = n;
+        //Swap the max with the last item in the array and make that part sorted
         while (size > 0){
             swap(A,0,size - 1);
             size--;
