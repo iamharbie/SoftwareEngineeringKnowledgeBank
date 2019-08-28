@@ -62,6 +62,8 @@ public class QuickSort3Way {
         quickSort3Way(A,0,A.length-1);
         System.out.println(Arrays.toString(A));
 
+
+
     }
 
 
