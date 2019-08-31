@@ -49,6 +49,7 @@ public class HeapSort {
             siftDown(A,index,n);
         }
 
+
         int size = n;
         //Swap the max with the last item in the array and make that part sorted
         while (size > 0){
