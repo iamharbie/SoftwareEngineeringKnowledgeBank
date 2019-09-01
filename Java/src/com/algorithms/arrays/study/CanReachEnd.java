@@ -3,7 +3,7 @@ package com.algorithms.arrays.study;
 
 import java.util.Arrays;
 
-public class JumpGame {
+public class CanReachEnd {
 
 
     enum Index {
@@ -11,20 +11,20 @@ public class JumpGame {
     }
 
 
-    private static boolean canJump(int[] A) {
+    private static boolean canReachEnd(int[] A) {
         //Brute force
 
-        //return canJumpFromPosition(0,A);
+        //return canReachEndFromPosition(0,A);
 
         //Greedy
        /** Index[] memo = new Index[A.length];
         Arrays.fill(memo,Index.UNKNOWN);
         memo[A.length - 1] = Index.GOOD;
 
-        return canJumpFromPosition(0,A,memo);
+        return canReachEndFromPosition(0,A,memo);
 
         **/
-       return canJumpGreedy(A);
+        return canReachEndGreedyRTL(A);
     }
 
     /**
@@ -48,15 +48,28 @@ public class JumpGame {
      * Since index 1 was determined to be GOOD, it is enough to jump there and then be sure we can eventually reach index 6.
      * It does not matter that nums[0] is big enough to jump all the way to the last index. All we need is one way.
      * **/
-    private static boolean canJumpGreedy(int[] A) {
+    private static boolean canReachEndGreedyRTL(int[] A) {
         int lastGoodPosition = A.length - 1;
-
         for (int currPosition = A.length - 2; currPosition >=0 ; currPosition--) {
-            if(currPosition + A[currPosition] >= lastGoodPosition) lastGoodPosition = currPosition;
+            if(currPosition + A[currPosition] >= lastGoodPosition) {
+                lastGoodPosition = currPosition;
+            }
         }
 
         return lastGoodPosition == 0;
 
+    }
+
+    private static boolean canReachEndGreedyLTR(int[] A){
+        int furthestReachSoFar = 0, lastIndex = A.length - 1;
+        for (int i = 0; i <= furthestReachSoFar && furthestReachSoFar < lastIndex; ++i) {
+            if(i + A[i] > furthestReachSoFar){
+                furthestReachSoFar = Math.max(furthestReachSoFar , i + A[i]);
+            }
+
+        }
+
+        return furthestReachSoFar >= lastIndex;
     }
 
     /**
@@ -64,14 +77,14 @@ public class JumpGame {
     *
     * */
 
-    private static boolean canJumpFromPosition(int position, int[] nums, Index[] memo) {
+    private static boolean canReachEndFromPosition(int position, int[] nums, Index[] memo) {
         if(memo[position] != Index.UNKNOWN) {
             return memo[position] == Index.GOOD;
         }
 
         int farthestJumpFromHere = position + nums[position];
         for (int nextPosition = farthestJumpFromHere; nextPosition > position; nextPosition--) {
-            if(canJumpFromPosition(nextPosition,nums,memo)) {
+            if(canReachEndFromPosition(nextPosition,nums,memo)) {
                 memo[position] = Index.GOOD;
                 return true;
             }
@@ -88,13 +101,13 @@ public class JumpGame {
 
     //Brute force --  try all approach from the beginning till you get to the end
     //A little optimization is to start from the max position you can jump to -- same time complexity --- O(2^n)
-    private static boolean canJumpFromPosition(int position, int[] nums) {
+    private static boolean canReachEndFromPosition(int position, int[] nums) {
         if(position == nums.length - 1) return true;
 
 
         int farthestJumpFromHere = position + nums[position];
         for (int nextPosition = farthestJumpFromHere; nextPosition > position; nextPosition--) {
-            if(canJumpFromPosition(nextPosition,nums)) return true;
+            if(canReachEndFromPosition(nextPosition,nums)) return true;
         }
 
         return false;
@@ -103,8 +116,9 @@ public class JumpGame {
 
     public static void main(String args[])
     {
-        int arr[] = {2,3,0,0,4};
-        System.out.print(canJump(arr));
+        int arr[] = {2,3,1,1,4};
+        System.out.println(canReachEnd(arr));
+        System.out.print(canReachEndGreedyLTR(arr));
     }
 
 
